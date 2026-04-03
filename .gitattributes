@@ -1,0 +1,8 @@
+﻿* text=auto
+*.R text eol=lf
+*.rs text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.c text eol=lf
+configure text eol=lf
+configure.win text eol=lf
