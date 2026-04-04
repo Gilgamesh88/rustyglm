@@ -10,9 +10,16 @@
 #' @useDynLib rustyglm, .registration = TRUE
 NULL
 
-#' Return string `"Hello world!"` to R.
+#' Ajusta un GLM Poisson desde R.
+#'
+#' @param response Vector numérico de la variable respuesta.
+#' @param x_flat   Matriz de diseño como vector en orden column-major (como R la guarda).
+#' @param nrows    Número de filas (observaciones).
+#' @param ncols    Número de columnas (variables + intercepto).
+#'
+#' @return Vector numérico con los coeficientes estimados.
 #' @export
-hello_world <- function() .Call(wrap__hello_world)
+glm_fit_poisson <- function(response, x_flat, nrows, ncols) .Call(wrap__glm_fit_poisson, response, x_flat, nrows, ncols)
 
 
 # nolint end
