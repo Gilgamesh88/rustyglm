@@ -1,17 +1,27 @@
 [package]
-name = 'rustyglm'
+name = "rustyglm"
 publish = false
-version = '0.1.0'
-edition = '2021'
-rust-version = '1.65'
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.65"
 
 [lib]
-crate-type = [ 'staticlib' ]
-name = 'rustyglm'
+crate-type = ["staticlib"]
+name = "rustyglm"
 
 [dependencies]
-extendr-api = '0.8.1'
+extendr-api = "0.8.1"
+
+# RustyStats core — puro Rust, sin PyO3
+rustystats-core = { git = "https://github.com/PricingFrontier/rustystats.git", package = "rustystats-core" }
+
+# Álgebra lineal — mismas versiones que RustyStats para evitar conflictos
+ndarray     = { version = "0.17", features = ["approx"] }
+nalgebra    = { version = "0.34", features = ["matrixmultiply"] }
+rayon       = "1.10"
+thiserror   = "2.0"
+statrs      = "0.18"
 
 [profile.release]
-lto = true
+lto           = true
 codegen-units = 1

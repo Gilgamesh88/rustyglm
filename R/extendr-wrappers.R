@@ -10,16 +10,13 @@
 #' @useDynLib rustyglm, .registration = TRUE
 NULL
 
-#' Ajusta un GLM Poisson desde R.
-#'
-#' @param response Vector numérico de la variable respuesta.
-#' @param x_flat   Matriz de diseño como vector en orden column-major (como R la guarda).
-#' @param nrows    Número de filas (observaciones).
-#' @param ncols    Número de columnas (variables + intercepto).
-#'
-#' @return Vector numérico con los coeficientes estimados.
+#' Ajusta un GLM desde R usando RustyStats core.
 #' @export
-glm_fit_poisson <- function(response, x_flat, nrows, ncols) .Call(wrap__glm_fit_poisson, response, x_flat, nrows, ncols)
+glm_fit_rust <- function(response, x_flat, nrows, ncols, family, offset, reg_type, lambda, l1_ratio) .Call(wrap__glm_fit_rust, response, x_flat, nrows, ncols, family, offset, reg_type, lambda, l1_ratio)
+
+#' Ajusta un GLM con penalizaciones multi-tipo (SMuRF — FISTA Rust).
+#' @export
+smurf_fit_rust <- function(response, x_flat, nrows, ncols, family, offset, weights, pen_types, col_starts, col_ends, pen_mats_flat, pen_mat_nrows, pen_mat_ncols, q_mats_flat, q_mat_nrows, q_mat_ncols, eigvals_flat, eigval_lens, lambda1_flat, lambda1_lens, lambda2s, group_ids, lambda, maxiter, epsilon, step_init, tau, start) .Call(wrap__smurf_fit_rust, response, x_flat, nrows, ncols, family, offset, weights, pen_types, col_starts, col_ends, pen_mats_flat, pen_mat_nrows, pen_mat_ncols, q_mats_flat, q_mat_nrows, q_mat_ncols, eigvals_flat, eigval_lens, lambda1_flat, lambda1_lens, lambda2s, group_ids, lambda, maxiter, epsilon, step_init, tau, start)
 
 
 # nolint end
